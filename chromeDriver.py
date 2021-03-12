@@ -2,6 +2,7 @@ from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from bs4 import BeautifulSoup
 import time
+from selenium.webdriver import ActionChains
 
 ######################################
 #     Make Sure To Change Path       #
@@ -23,10 +24,16 @@ inputElement2 = driver.find_element_by_id('_58_password')
 inputElement2.send_keys('Pinboy1$')
 inputElement2.send_keys(Keys.ENTER)
 time.sleep(3)
-print('test')
-driver.get('https://oakhillcc.com/group/pages/member-roster')
-time.sleep(5)
-driver.find_element_by_class_name('ui-icon-seek-next')
+memberRoster = driver.get('https://oakhillcc.com/group/pages/member-roster')
+nextPage = driver.find_element_by_xpath('//*[@id="_memberRoster_WAR_northstarprimefacesportlet_:rosterFm:membersDg_paginator_bottom"]/span[5]/span')
+action = ActionChains(driver)
+action.click(on_element=nextPage)
+action.perform()
+time.sleep(10)
+
+
+# time.sleep(5)
+# driver.find_element_by_class_name('ui-icon-seek-next')
 
 # buttons = driver.find_element_by_link_text("Member Roster").click()
 # time.sleep(3)
